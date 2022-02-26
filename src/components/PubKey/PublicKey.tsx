@@ -1,10 +1,20 @@
 import React from "react";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useWallet } from '@solana/wallet-adapter-react';
 
-const PublicKey: FC = () => {
+
+const PublicKey: FC<any> = (props: any) => {
+
+    const { setConnected } = props;
 
     const wallet = useWallet();
+
+    let provider;
+
+    useEffect(() => {
+        setConnected(wallet.connected);
+        provider = window.solana;
+    }, [wallet]);
 
     return (
         <div>

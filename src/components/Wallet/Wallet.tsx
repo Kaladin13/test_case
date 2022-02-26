@@ -25,7 +25,13 @@ const Wallet: FC = () => {
         // add new wallets here
     ];
     
+    
+
     const [connected, setConnected] = useState(false);
+
+    useEffect(() => {
+        console.log("aa");
+    }, [connected]);
 
     const connect = () => {
         setConnected(!connected);
@@ -37,7 +43,7 @@ const Wallet: FC = () => {
             <WalletProvider wallets={wallets}>
                 <WalletModalProvider>
                     <div>
-                        <PublicKey/>
+                        <PublicKey setConnected={setConnected}/>
                         {!connected ? <WalletMultiButton onClick={connect}/> : <WalletDisconnectButton onClick={connect}/>}
                     </div>
                 </WalletModalProvider>
